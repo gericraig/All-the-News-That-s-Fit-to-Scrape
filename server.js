@@ -35,6 +35,7 @@ db.once("open", function () {
 
 var app = express();
 var port = process.env.PORT || 3000;
+var PORT = 3000;
 
 // app set-ups
 
@@ -118,7 +119,7 @@ app.get("/saved", function (req, res) {
     }, function (err, data) {
         if (data.length === 0) {
             res.render("placeholder", {
-                message: "You have not saved any articles yet. Try to save some delicious news by simply clicking \"Save Article\"!"
+                message: "You have not saved any articles yet. Click \"Save Article\"!"
             });
         } else {
             res.render("saved", {
@@ -212,3 +213,8 @@ app.get("/note/:id", function (req, res) {
         res.send(data.note);
     })
 })
+
+// Start the server
+app.listen(PORT, function() {
+    console.log("App running on port " + PORT + "!");
+  });
